@@ -10,6 +10,7 @@ function translation(){
     let howManyFullTrees = Math.trunc((numbers.length -1)/3);
     console.log(howManyFullTrees);
     howManyNumbers = new Array;
+    numbersRank = [["",""], [" тисячя"," тисячи"], [" мільйон"," мільйони"]]
 
     for (let i = 0; i < howManyFullTrees + 1; i++) {
         if (howManyFullTrees == (numbers.length)/3 || i < howManyFullTrees) {
@@ -25,30 +26,63 @@ function translation(){
 
         for (let j = 0; j < howManyNumbers[i]; j++) {
             result[i][j] = numbers[j + i*3];
-            console.log(`result[${i}][${j}] ${result[i][j]} j: ${j}`);
+            //console.log(`result[${i}][${j}] ${result[i][j]} j: ${j}`);
         }
     }
     // console.log(result);    
 
     for (let i = 0; i < result.length; i++) { 
         for (let j = 0; j < result[i].length; j++) {
-            if (numbers[j + i*3] == 0 && numbers.length>1) {
-                numbers[j + i*3] = "";
-            }
-            if ((j + i*3) == 0) {
-                result[i][j] = wordNumbers0[numbers[j + i*3]];       
-            }else if ((j + i*3) == 1) {
-                if (numbers[j + i*3] + numbers[(j + i*3)-1] < 20) {
+            if (result[i][j] == 0 && numbers.length>1) {
+                result[i][j] = "";
+                console.log('here 0')
+            }else if ((j) == 0) {
+                result[i][j] = wordNumbers0[result[i][j]];       
+            }else if ((j) == 1) {
+                console.log(result[i][j] + result[i][j-1]);
+                if (numbers[j + i*3] + numbers[(j + i*3)-1] < 20 && numbers[(j + i*3)-1] != 0) {
+                    console.log(`11-19${result[i][j] + result[i][j-1]}`);
                     result[i][j-1] = wordNumbers0[numbers[j + i*3] + numbers[(j + i*3)-1]];
+                    result[i][j] = '';
                 }else{
-                    result[i][j] = wordNumbers00[numbers[j + i*3]];
+                    result[i][j] = wordNumbers00[result[i][j]];
                 }
-            }else if ((j + i*3) == 2) {
-                result[i][j] = wordNumbers000[numbers[j + i*3]];  
+            }else if ((j) == 2) {
+                result[i][j] = wordNumbers000[result[i][j]];  
             }
+            console.log(`result[${i}][${j}] ${result[i][j]} j: ${j}`);
         }
+        result[i][0] += numbersRank[i][1];
+        result[i] = result[i].reverse().join(" ")
     }
+
     console.log(result);
+
+    // for (let i = 0; i < result.length; i++) {
+    //     result[i] = result[i].reverse().join(" ")        
+    // }
+
+    console.log(result);
+
+    // for (let i = 0; i < result.length; i++) { 
+    //     for (let j = 0; j < result[i].length; j++) {
+    //         if (numbers[j + i*3] == 0 && numbers.length>1) {
+    //             numbers[j + i*3] = "";
+    //         }
+    //         if ((j + i*3) == 0) {
+    //             result[i][j] = wordNumbers0[numbers[j + i*3]];       
+    //         }else if ((j + i*3) == 1) {
+    //             if (numbers[j + i*3] + numbers[(j + i*3)-1] < 20) {
+    //                 result[i][j-1] = wordNumbers0[numbers[j + i*3] + numbers[(j + i*3)-1]];
+    //             }else{
+    //                 result[i][j] = wordNumbers00[numbers[j + i*3]];
+    //             }
+    //         }else if ((j + i*3) == 2) {
+    //             result[i][j] = wordNumbers000[numbers[j + i*3]];  
+    //         }
+    //     }
+    // }
+    // console.log(result);
 
 
 
@@ -67,5 +101,5 @@ function translation(){
         //     result[0] = wordNumbers0[numbers[0]];
         // }
 
-    document.getElementById("idWords").innerHTML = result.join(" ") + " Грн.";
+    document.getElementById("idWords").innerHTML = result.reverse().join(" ") + " Грн.";
 }
