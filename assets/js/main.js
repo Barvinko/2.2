@@ -10,7 +10,8 @@ function translation(){
     let howManyFullTrees = Math.trunc((numbers.length -1)/3);
     console.log(howManyFullTrees);
     howManyNumbers = new Array;
-     for (let i = 0; i < howManyFullTrees + 1; i++) {
+
+    for (let i = 0; i < howManyFullTrees + 1; i++) {
         if (howManyFullTrees == (numbers.length)/3 || i < howManyFullTrees) {
             howManyNumbers[i] = 3;
         }else {
@@ -24,33 +25,30 @@ function translation(){
 
         for (let j = 0; j < howManyNumbers[i]; j++) {
             result[i][j] = numbers[j + i*3];
-            console.log(`numbers[j] ${numbers[j]} j: ${j}`);
+            console.log(`result[${i}][${j}] ${result[i][j]} j: ${j}`);
+        }
+    }
+    // console.log(result);    
+
+    for (let i = 0; i < result.length; i++) { 
+        for (let j = 0; j < result[i].length; j++) {
+            if (numbers[j + i*3] == 0 && numbers.length>1) {
+                numbers[j + i*3] = "";
+            }
+            if ((j + i*3) == 0) {
+                result[i][j] = wordNumbers0[numbers[j + i*3]];       
+            }else if ((j + i*3) == 1) {
+                if (numbers[j + i*3] + numbers[(j + i*3)-1] < 20) {
+                    result[i][j-1] = wordNumbers0[numbers[j + i*3] + numbers[(j + i*3)-1]];
+                }else{
+                    result[i][j] = wordNumbers00[numbers[j + i*3]];
+                }
+            }else if ((j + i*3) == 2) {
+                result[i][j] = wordNumbers000[numbers[j + i*3]];  
+            }
         }
     }
     console.log(result);
-    
-
-    for (let j = 0; j < result.length; j++) {
-
-        for (i = i; i < numbers.length; i++) {
-            if (numbers[i] == 0 && numbers.length>1) {
-                numbers[i] = "";
-            }
-            if (i == 0) {
-                result[j][i] = wordNumbers0[numbers[i]];       
-            }else if (i == 1) {
-                if (numbers[i] + numbers[i-1] < 20) {
-                    result[j][i-1] = wordNumbers0[numbers[i] + numbers[i-1]];
-                    console.log(`number[i-1] ${result[i]}`);
-                }else{
-                    result[j][i] = wordNumbers00[numbers[i]];
-                }
-            }else if (i == 2) {
-                result[j][i] = wordNumbers000[numbers[i]];  
-            }
-        }
-    }
-
 
 
 
