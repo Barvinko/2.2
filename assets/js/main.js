@@ -10,7 +10,7 @@ function translation(){
     let howManyFullTrees = Math.trunc((numbers.length -1)/3);
     console.log(howManyFullTrees);
     howManyNumbers = new Array;
-    numbersRank = [["",""], [" тисячя"," тисячи"], [" мільйон"," мільйони"]]
+    numbersRank = [["",""], [" тисячя"," тисячи"], [" мільйон"," мільйонів"]]
 
     for (let i = 0; i < howManyFullTrees + 1; i++) {
         if (howManyFullTrees == (numbers.length)/3 || i < howManyFullTrees) {
