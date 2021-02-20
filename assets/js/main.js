@@ -1,12 +1,12 @@
 let wordNumbers0 = ["нуль","одна","дві","три","чотири","пять","шість","сім","вісім","девять","десять","одинацать","дванадцать","тринадцать","чотирнадцять","пятнатцать","шістнадцять","сімнадцять","вісімнадцять","девятнадцять"];
 let wordNumbers00 = [" ", "десять", "дватцять","тридцять","сорок","пятдесять","шисдесят","сімдесят","вісімдесят","девяносто"];
 let wordNumbers000 = ["","сто", "двісті", "триста","чотириста","пятсот","шістсот","сімсот","вісімсот","девятсот"];
-let numbersRank = [["","","",""], [" тисяча"," тисячі"," тисячь", ""], [" мільйон"," мільйони"," мільйонів", ""],[" мільярд"," мільярди"," мільярдів",""]]
+let numbersRank = [[" гривня"," гривні"," гривень",""], [" тисяча"," тисячі"," тисячь", ""], [" мільйон"," мільйони"," мільйонів", ""],[" мільярд"," мільярди"," мільярдів",""],[" трільойон"," трильйона"," трильйонів",""]]
 
 
 function translation(){
     let wordNumbers0 = ["нуль","одна","дві","три","чотири","пять","шість","сім","вісім","девять","десять","одинацать","дванадцать","тринадцать","чотирнадцять","пятнатцать","шістнадцять","сімнадцять","вісімнадцять","девятнадцять"];
-    
+
     let sum = (document.getElementById("input").value);
     numbers = sum.split('');
     numbers = numbers.reverse();
@@ -49,7 +49,7 @@ function translation(){
     let condition = +numbers.reverse().join('');
     numbers.reverse().join('');
     if (condition == 0) {
-        document.getElementById("idWords").innerHTML = wordNumbers0[0] + " Грн.";
+        document.getElementById("idWords").innerHTML = wordNumbers0[0] + numbersRank[0][2];
     }else if (numbers[numbers.length-1] == 0 || condition < 0) {
         document.getElementById("idWords").innerHTML = "Ви ввели не коректну суму"
     }
@@ -100,7 +100,7 @@ function translation(){
             result[i] = result[i].reverse().join(" ");
         }
         //result output
-        document.getElementById("idWords").innerHTML = result.reverse().join(" ") + " Грн.";
+        document.getElementById("idWords").innerHTML = result.reverse().join(" ");
     }
 
     console.log(result);
